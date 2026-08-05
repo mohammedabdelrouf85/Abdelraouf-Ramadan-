@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prof. Dr. Abdelraouf Ramadan | Agricultural Engineering & Water Management Portfolio</title>
+    
+    <!-- Meta SEO Tags -->
+    <meta name="description" content="Official Portfolio of Prof. Dr. Abdelraouf Ramadan (Eid) - Professor of Agricultural Engineering and Water Management at National Research Centre (NRC), Egypt. International expert in modern drip irrigation, SALTMED modeling, and non-conventional water sources.">
+    <meta name="keywords" content="Abdelraouf Ramadan, Agricultural Engineering, Water Management, National Research Centre, NRC, Drip Irrigation, SALTMED, Soil Science, Egypt Agriculture, Remote Sensing, Hydroponics">
+    <meta name="author" content="Prof. Dr. Abdelraouf Ramadan">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='28' fill='%23070e09'/%3E%3Cpath d='M50 18 C30 38 20 52 20 66 C20 80 33 90 50 90 C67 90 80 80 80 66 C80 52 70 38 50 18 Z' fill='%2310b981'/%3E%3Cpath d='M50 35 L50 82 M50 55 L32 45 M50 65 L68 55' stroke='%23ffffff' stroke-width='4' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Scroll Progress Indicator Bar -->
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+    <!-- 1. Initial Loading Screen -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-sprout-icon">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 85 C50 85 50 50 50 25" stroke="#10b981" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M50 55 C35 45 20 45 15 55 C10 65 25 70 50 55" fill="#34d399" opacity="0.9"/>
+                    <path d="M50 40 C65 30 80 30 85 40 C90 50 75 55 50 40" fill="#0ea5e9" opacity="0.9"/>
+                    <circle cx="50" cy="20" r="6" fill="#f59e0b"/>
+                </svg>
+            </div>
+            <h2 class="preloader-title">Prof. Dr. Abdelraouf Ramadan</h2>
+            <p class="preloader-quote">
+                "Pioneering the future of agricultural engineering, water management, and sustainable landscape design through innovative research."
+            </p>
+            <div class="preloader-bar-bg">
+                <div class="preloader-bar-fill" id="preloaderBar"></div>
+            </div>
+            <div class="preloader-status">
+                <span>Loading Agricultural Research Engine...</span>
+                <span id="preloaderPercent">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inline Preloader Script (Smooth ~2.8s Loading Duration) -->
+    <script>
+      (function() {
+        var pBar = document.getElementById('preloaderBar');
+        var pPercent = document.getElementById('preloaderPercent');
+        var p = 0;
+        var timer = setInterval(function() {
+          p += Math.floor(Math.random() * 3) + 1;
+          if (p >= 100) {
+            p = 100;
+            clearInterval(timer);
+            setTimeout(function() {
+              var loader = document.getElementById('preloader');
+              if (loader) {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+                setTimeout(function() { loader.style.display = 'none'; }, 500);
+              }
+            }, 400);
+          }
+          if (pBar) pBar.style.width = p + '%';
+          if (pPercent) pPercent.textContent = p + '%';
+        }, 25);
+      })();
+    </script>
+
+    <!-- 2. Sticky Glass Navbar -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#hero" class="nav-logo">
+                <div class="nav-logo-icon">
+                    <i class="fa-solid fa-wheat-awn"></i>
+                </div>
+                <div>
+                    <span>Prof. Dr. Abdelraouf Ramadan</span>
+                    <span style="display:block; font-size:0.75rem; color:var(--color-green-light); font-weight:400;">Agricultural Engineering & Water Management</span>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about" class="nav-link"><i class="fa-solid fa-user-circle"></i> About</a></li>
+                    <li><a href="#positions" class="nav-link"><i class="fa-solid fa-briefcase"></i> Positions</a></li>
+                    <li><a href="#education" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> Education</a></li>
+                    <li><a href="#awards" class="nav-link"><i class="fa-solid fa-trophy"></i> Awards</a></li>
+                    <li><a href="#projects" class="nav-link"><i class="fa-solid fa-diagram-project"></i> Projects</a></li>
+                    <li><a href="#media" class="nav-link"><i class="fa-solid fa-video"></i> Media Showcase</a></li>
+                    <li><a href="#research-papers" class="nav-link"><i class="fa-solid fa-newspaper"></i> Papers (117)</a></li>
+                    <li><a href="#contact" class="btn btn-primary" style="padding:0.5rem 1.2rem; font-size:0.9rem;">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-text-content">
+                        <div class="hero-badge">
+                            <i class="fa-solid fa-award"></i> Full Professor @ National Research Centre (NRC), Egypt
+                        </div>
+                        <h1 class="hero-title">
+                            Prof. Dr. <span class="gradient-green">Abdelraouf</span> <span class="gradient-water">Ramadan</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            Professor of Agricultural Engineering & Water Management | Expert in Pressurized Irrigation, SALTMED Modeling & Sustainable Landscape Engineering
+                        </p>
+                        <p class="hero-description">
+                            With over 28 years of dedicated academic and field research at the Water Relations and Field Irrigation Department, National Research Centre. Recipient of the International ICID Best Paper Award, Newton-Mosharafa Postdoctoral Fellowship (UK), and Ford Foundation Fellowship (USA).
+                        </p>
+                        <div class="hero-actions">
+                            <a href="#research-papers" class="btn btn-primary">
+                                <i class="fa-solid fa-scroll"></i> Explore 117 Research Papers
+                            </a>
+                            <a href="#media" class="btn btn-secondary">
+                                <i class="fa-solid fa-circle-play"></i> Showcase Video & Media
+                            </a>
+                            <a href="#contact" class="btn btn-outline">
+                                <i class="fa-solid fa-envelope"></i> Get Direct Contact
+                            </a>
+                        </div>
+                        <div class="hero-metrics-pills">
+                            <div class="metric-pill"><i class="fa-solid fa-book-open text-accent-green"></i> 117 Publications</div>
+                            <div class="metric-pill"><i class="fa-solid fa-chart-line text-accent-blue"></i> Scopus h-index: 21</div>
+                            <div class="metric-pill"><i class="fa-solid fa-graduation-cap text-accent-gold"></i> ResearchGate: 24</div>
+                            <div class="metric-pill"><i class="fa-solid fa-quote-left text-accent-green"></i> 1700+ Citations</div>
+                        </div>
+                    </div>
+
+                    <div class="hero-portrait-container">
+                        <div class="hero-portrait-card">
+                            <!-- Visual portrait display -->
+                            <img src="prof_abdelraouf.jpg" alt="Prof. Dr. Abdelraouf Ramadan" class="hero-portrait-img">
+                            <div class="hero-portrait-badge">
+                                <i class="fa-solid fa-circle-check text-accent-green" style="font-size:1.3rem;"></i>
+                                <div>
+                                    <div style="font-weight:700; font-size:0.95rem; color:#fff;">Dr. Abdelraouf Ramadan</div>
+                                    <div style="font-size:0.8rem; color:var(--color-text-muted);">Professor & International Expert</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Bar -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">126</div>
+                        <div class="stat-label">Published Research Papers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">21</div>
+                        <div class="stat-label">Scopus h-index (917 Citations)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24</div>
+                        <div class="stat-label">ResearchGate / Scholar h-index</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">28+</div>
+                        <div class="stat-label">Years Academic & Field Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">22+</div>
+                        <div class="stat-label">National & International Projects</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & Academic Metrics Section -->
+        <section class="section-padding bg-surface" id="about">
+            <div class="container">
+                <div class="text-center" style="text-align:center; max-width:800px; margin:0 auto 3rem auto;">
+                    <span class="section-tag"><i class="fa-solid fa-microscope"></i> Academic Profile & Organization</span>
+                    <h2 class="section-title">Bridging <span class="gradient-green">Agricultural Science</span> & <span class="gradient-water">Water Innovation</span></h2>
+                    <p class="section-subtitle">
+                        Prof. Dr. Abdelraouf Ramadan (Abdelraouf Ramadan Eid) is a Full Professor of Agricultural Engineering and Water Management at the Water Relations and Field Irrigation Department, Agricultural and Biological Research Institute, National Research Centre (NRC), Cairo, Egypt.
+                    </p>
+                </div>
+
+                <!-- Academic Metrics Profiles Cards -->
+                <div class="academic-profiles-grid">
+                    <div class="profile-metric-card reveal-on-scroll">
+                        <div class="profile-card-header">
+                            <div class="profile-icon-box"><i class="fa-solid fa-atom"></i></div>
+                            <div>
+                                <h3 class="profile-card-title">Scopus Database</h3>
+                                <p style="font-size:0.85rem; color:var(--color-text-muted);">Author ID: 57205709572</p>
+                            </div>
+                        </div>
+                        <div class="profile-stats-row">
+                            <div>
+                                <div class="p-stat-val">21</div>
+                                <div class="p-stat-lbl">h-index</div>
+                            </div>
+                            <div>
+                                <div class="p-stat-val">70</div>
+                                <div class="p-stat-lbl">Documents</div>
+                            </div>
+                            <div>
+                                <div class="p-stat-val">917</div>
+                                <div class="p-stat-lbl">Citations</div>
+                            </div>
+                        </div>
+                        <a href="https://www.scopus.com/authid/detail.uri?authorId=57205709572" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%; font-size:0.88rem;">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Scopus Profile
+                        </a>
+                    </div>
+
+                    <div class="profile-metric-card reveal-on-scroll">
+                        <div class="profile-card-header">
+                            <div class="profile-icon-box" style="background:rgba(16,185,129,0.15); color:var(--color-green-light); border-color:rgba(16,185,129,0.3);"><i class="fa-solid fa-flask"></i></div>
+                            <div>
+                                <h3 class="profile-card-title">ResearchGate</h3>
+                                <p style="font-size:0.85rem; color:var(--color-text-muted);">Global Research Network</p>
+                            </div>
+                        </div>
+                        <div class="profile-stats-row">
+                            <div>
+                                <div class="p-stat-val">24</div>
+                                <div class="p-stat-lbl">h-index</div>
+                            </div>
+                            <div>
+                                <div class="p-stat-val">116</div>
+                                <div class="p-stat-lbl">Documents</div>
+                            </div>
+                            <div>
+                                <div class="p-stat-val">1556</div>
+                                <div class="p-stat-lbl">Citations</div>
+                            </div>
+                        </div>
+                        <a href="https://www.researchgate.net/profile/Abdelraouf-Ramadan" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%; font-size:0.88rem;">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> View ResearchGate Profile
+                        </a>
+                    </div>
+
+                    <div class="profile-metric-card reveal-on-scroll">
+                        <div class="profile-card-header">
+                            <div class="profile-icon-box" style="background:rgba(245,158,11,0.15); color:var(--color-earth-gold); border-color:rgba(245,158,11,0.3);"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <div>
+                                <h3 class="profile-card-title">Google Scholar</h3>
+                                <p style="font-size:0.85rem; color:var(--color-text-muted);">Citations & Metrics</p>
+                            </div>
+                        </div>
+                        <div class="profile-stats-row">
+                            <div>
+                                <div class="p-stat-val">24</div>
+                                <div class="p-stat-lbl">h-index</div>
+                            </div>
+                            <div>
+                                <div class="p-stat-val">116</div>
+                                <div class="p-stat-lbl">Documents</div>
+                            </div>
+                            <div>
+                                <div class="p-stat-val">1711</div>
+                                <div class="p-stat-lbl">Citations</div>
+                            </div>
+                        </div>
+                        <a href="https://scholar.google.com/citations?hl=en&user=vYNp7qkAAAAJ" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%; font-size:0.88rem;">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Google Scholar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Positions & Leadership (9 Roles) -->
+        <section class="section-padding" id="positions">
+            <div class="container">
+                <span class="section-tag"><i class="fa-solid fa-briefcase"></i> Key Responsibilities</span>
+                <h2 class="section-title">Current Positions & <span class="gradient-green">Leadership Roles</span></h2>
+                <p class="section-subtitle">Distinguished executive, committee, and advisory appointments held across national and international bodies.</p>
+
+                <div class="positions-grid">
+                    <div class="position-card reveal-on-scroll">
+                        <div class="position-icon"><i class="fa-solid fa-building-columns"></i></div>
+                        <div class="position-details">
+                            <h4>Full Professor of Agricultural Engineering</h4>
+                            <p>National Research Centre (NRC), Cairo, Egypt (29/12/2020 â€“ Present)</p>
+                        </div>
+                    </div>
+
+                    <div class="position-card reveal-on-scroll">
+                        <div class="position-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                        <div class="position-details">
+                            <h4>Technical Evaluation & Performance Office Member</h4>
+                            <p>Academy of Scientific Research and Technology (ASRT), Egypt</p>
+                        </div>
+                    </div>
+
+                    <div class="position-card reveal-on-scroll">
+                        <div class="position-icon"><i class="fa-solid fa-book"></i></div>
+                        <div class="position-details">
+                            <h4>Egyptian Water Code Modernization Committee</h4>
+                            <p>Egyptian Committee for Modernizing the Code for Water Resources & Irrigation Works</p>
+                        </div>
+                    </div>
+
+                    <div class="position-card reveal-on-scroll">
+                        <div class="position-icon"><i class="fa-solid fa-globe"></i></div>
+                        <div class="position-details">
+                            <h4>Board of Directors Member</h4>
+                            <p>United Arab Organization for Scientific Research</p>
+                        </div>
+                    </div>
+
+                    <div class="position-card reveal-on-scroll">
+                        <div class="position-icon"><i class="fa-solid fa-seedling"></i></div>
+                        <div class="position-details">
+                            <h4>Agricultural Development Expert</h4>
+                            <p>Arab Organization for Agricultural Development (AOAD)</p>
+                        </div>
+                    </div>
+
+                    <div class="position-card reveal-on-scroll">
+                        <div class="position-icon"><i class="fa-solid fa-droplet"></i></div>
+                        <div class="position-details">
+                            <h4>Arab Water Council Expert</h4>
+                            <p>Distinguished Expert in Maximizing Non-Traditional Water Sources in Irrigation</p>
+                        </div>
+                    </div>
+
+                    <div class="position-card reveal-on-scroll">
+                        <div class="position-icon"><i class="fa-solid fa-flag-usa"></i></div>
+                        <div class="position-details">
+                            <h4>Goodwill Ambassador</h4>
+                            <p>Appointed Goodwill Ambassador from the State of Arkansas, United States of America</p>
+                        </div>
+                    </div>
+
+                    <div class="position-card reveal-on-scroll">
+                        <div class="position-icon"><i class="fa-solid fa-landmark"></i></div>
+                        <div class="position-details">
+                            <h4>Supreme Scientific Advisory Board Member</h4>
+                            <p>London Center for Research and Consultation, UK</p>
+                        </div>
+                    </div>
+
+                    <div class="position-card reveal-on-scroll">
+                        <div class="position-icon"><i class="fa-solid fa-certificate"></i></div>
+                        <div class="position-details">
+                            <h4>International Fellowships Fellow</h4>
+                            <p>Ford Foundation Fellow (USA) & Newton Mosharafa Program Fellow (UK)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Employment History & Academic Progression -->
+        <section class="section-padding bg-surface">
+            <div class="container">
+                <span class="section-tag"><i class="fa-solid fa-timeline"></i> Career Journey</span>
+                <h2 class="section-title">Employment <span class="gradient-water">History</span></h2>
+                <p class="section-subtitle">Progressive academic rank history at the National Research Centre, Egypt.</p>
+
+                <div class="timeline">
+                    <div class="timeline-item reveal-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">29/12/2020 â€“ Present</span>
+                            <h3 style="font-size:1.3rem; font-weight:700; color:#fff; margin-bottom:0.4rem;">Full Professor of Agricultural Engineering</h3>
+                            <p style="color:var(--color-text-muted);">Water Relations and Field Irrigation Dept, Agricultural and Biological Research Institute, National Research Centre, Egypt.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal-on-scroll">
+                        <div class="timeline-dot" style="border-color:var(--color-water-sky);"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date" style="background:rgba(14,165,233,0.15); color:var(--color-water-sky);">3/11/2014 â€“ 28/12/2020</span>
+                            <h3 style="font-size:1.3rem; font-weight:700; color:#fff; margin-bottom:0.4rem;">Associate Professor</h3>
+                            <p style="color:var(--color-text-muted);">National Research Centre, Cairo, Egypt.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal-on-scroll">
+                        <div class="timeline-dot" style="border-color:var(--color-earth-gold);"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date" style="background:rgba(245,158,11,0.15); color:var(--color-earth-gold);">29/10/2009 â€“ 2/11/2014</span>
+                            <h3 style="font-size:1.3rem; font-weight:700; color:#fff; margin-bottom:0.4rem;">Assistant Professor (Researcher)</h3>
+                            <p style="color:var(--color-text-muted);">National Research Centre, Cairo, Egypt.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Academic Degrees -->
+        <section class="section-padding" id="education">
+            <div class="container">
+                <span class="section-tag"><i class="fa-solid fa-graduation-cap"></i> Qualifications</span>
+                <h2 class="section-title">Education & <span class="gradient-green">Postdoctoral Fellowships</span></h2>
+                <p class="section-subtitle">Academic degrees and specialized international training.</p>
+
+                <div class="timeline">
+                    <div class="timeline-item reveal-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2015</span>
+                            <h3 style="font-size:1.3rem; font-weight:700; color:#fff; margin-bottom:0.4rem;">Postdoctoral Studies (Post Doc) â€“ United Kingdom</h3>
+                            <p style="color:var(--color-green-light); font-weight:600; margin-bottom:0.3rem;">Centre for Ecology and Hydrology, Newton-Mosharafa Program, UK</p>
+                            <p style="color:var(--color-text-muted);">Research Topic: "Sustainable water management under conditions of dry areas using simulation models (SALTMED)".</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2013</span>
+                            <h3 style="font-size:1.3rem; font-weight:700; color:#fff; margin-bottom:0.4rem;">Diploma in Remote Sensing & GIS</h3>
+                            <p style="color:var(--color-text-muted);">Ain Shams University, Egypt.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2009</span>
+                            <h3 style="font-size:1.3rem; font-weight:700; color:#fff; margin-bottom:0.4rem;">Ph.D. in Soil and Water Engineering</h3>
+                            <p style="color:var(--color-text-muted);">Agricultural Engineering Department, Faculty of Agriculture, Cairo University, Egypt.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2003</span>
+                            <h3 style="font-size:1.3rem; font-weight:700; color:#fff; margin-bottom:0.4rem;">M.Sc. in Agricultural Sciences</h3>
+                            <p style="color:var(--color-text-muted);">Agricultural Engineering Department, Faculty of Agriculture, Cairo University, Egypt.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">1997</span>
+                            <h3 style="font-size:1.3rem; font-weight:700; color:#fff; margin-bottom:0.4rem;">B.Sc. in Agricultural Sciences (Very Good with Honor - 80.58%)</h3>
+                            <p style="color:var(--color-text-muted);">Agricultural Mechanization Department, Faculty of Agriculture, Tanta University, Egypt.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Awards, Honors & Grants -->
+        <section class="section-padding bg-surface" id="awards">
+            <div class="container">
+                <span class="section-tag"><i class="fa-solid fa-trophy"></i> Recognition</span>
+                <h2 class="section-title">Awards, Honors & <span class="gradient-water">International Grants</span></h2>
+                <p class="section-subtitle">Prestigious awards for research excellence and competitive grants earned worldwide.</p>
+
+                <div class="awards-grid">
+                    <div class="award-card reveal-on-scroll">
+                        <div class="award-year">2025</div>
+                        <div class="award-title">Judge for Innovation for Humanity Award</div>
+                        <div class="award-desc">Recognized judge for the Innovation for Humanity Award by Misr El Kheir Foundation in cooperation with United Nations Development Programme (UNDP).</div>
+                    </div>
+
+                    <div class="award-card reveal-on-scroll">
+                        <div class="award-year">2020</div>
+                        <div class="award-title">Newton Prize Shortlist (United Kingdom)</div>
+                        <div class="award-desc">Shortlisted for the prestigious UK Newton Prize 2020 for outstanding research impact in sustainable water management.</div>
+                    </div>
+
+                    <div class="award-card reveal-on-scroll">
+                        <div class="award-year">2018</div>
+                        <div class="award-title">ICID Best Paper Award (International)</div>
+                        <div class="award-desc">Awarded Best Paper 2018 by the International Commission on Irrigation and Drainage (ICID) in the field of non-conventional water sources in irrigation.</div>
+                    </div>
+
+                    <div class="award-card reveal-on-scroll">
+                        <div class="award-year">2019</div>
+                        <div class="award-title">NRC Encourage Prize in Agriculture</div>
+                        <div class="award-desc">Awarded the Encouragement Prize of National Research Centre for agricultural engineering innovations.</div>
+                    </div>
+
+                    <div class="award-card reveal-on-scroll">
+                        <div class="award-year">2017</div>
+                        <div class="award-title">Eksheda Prize for Agricultural Engineering</div>
+                        <div class="award-desc">Awarded by Misr Society of Agricultural Engineering for outstanding research contributions.</div>
+                    </div>
+
+                    <div class="award-card reveal-on-scroll">
+                        <div class="award-year">2014 & 2015</div>
+                        <div class="award-title">Middle East Summit Honors</div>
+                        <div class="award-desc">Honored at Middle East Green Building Summit 2014 (Mosque roof cultivation using ablution water & solar energy) & Waste Management Summit 2015.</div>
+                    </div>
+
+                    <div class="award-card reveal-on-scroll">
+                        <div class="award-year">2012, 2013, 2014, 2015</div>
+                        <div class="award-title">NRC Research Output Excellence Awards</div>
+                        <div class="award-desc">Four-time winner of Excellence in Research Outputs and Applied Projects at National Research Centre level.</div>
+                    </div>
+
+                    <div class="award-card reveal-on-scroll">
+                        <div class="award-year">2005 & 2015 Grants</div>
+                        <div class="award-title">Ford Foundation & Newton-Mosharafa Grants</div>
+                        <div class="award-desc">Awarded international fellowships from Ford Foundation IFP (USA) for Ph.D. and Newton-Mosharafa (UK) for Postdoc research.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practicing Experience & Specializations + Teaching Courses -->
+        <section class="section-padding">
+            <div class="container">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem;" class="positions-grid">
+                    <div>
+                        <span class="section-tag"><i class="fa-solid fa-lightbulb"></i> Core Expertise</span>
+                        <h2 class="section-title">Practicing <span class="gradient-green">Experience</span></h2>
+                        <ul style="list-style:none; display:flex; flex-direction:column; gap:1rem; margin-top:1.5rem;">
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-circle-check text-accent-green"></i> Agricultural Mechanization & Equipment Design</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-circle-check text-accent-green"></i> Environmental Engineering & Water Resource Systems</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-circle-check text-accent-green"></i> Pressurized, Drip & Pulse Irrigation Techniques</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-circle-check text-accent-green"></i> Application of SALTMED & PVsyst Simulation Models</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-circle-check text-accent-green"></i> Sustainable Techniques to Improve Crop Water Productivity</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-circle-check text-accent-green"></i> Remote Sensing & GIS Applications in Agriculture</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-circle-check text-accent-green"></i> Reuse of Non-Traditional Water (Fish farm effluent & drainage)</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-circle-check text-accent-green"></i> Solar Renewable Energy Integration in Farms</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-circle-check text-accent-green"></i> Soilless, Hydroponic & Aquaponic Farming</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-circle-check text-accent-green"></i> Green Building Technology & Rooftop Farming</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <span class="section-tag"><i class="fa-solid fa-book-open-reader"></i> Academic Teaching</span>
+                        <h2 class="section-title">Courses <span class="gradient-water">Taught</span></h2>
+                        <ul style="list-style:none; display:flex; flex-direction:column; gap:1rem; margin-top:1.5rem;">
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-chalkboard-user text-accent-blue"></i> Environment and Natural Resources</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-chalkboard-user text-accent-blue"></i> Engineering of Pressurized Irrigation Systems</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-chalkboard-user text-accent-blue"></i> Engineering of Surface Irrigation Systems & Farm Drainage</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-chalkboard-user text-accent-blue"></i> Design & Operation of Irrigation & Drainage Systems</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-chalkboard-user text-accent-blue"></i> Surface and Ground Water Hydrology</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-chalkboard-user text-accent-blue"></i> Engineering Design of Ground Water Constructions</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-chalkboard-user text-accent-blue"></i> Pumping, Pumps & Hydraulics</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-chalkboard-user text-accent-blue"></i> Soil-Water-Plant Relations</li>
+                            <li class="glass-card" style="padding:1rem 1.5rem;"><i class="fa-solid fa-chalkboard-user text-accent-blue"></i> Plane Surveying & Engineering Drawing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Projects Section -->
+        <section class="section-padding bg-surface" id="projects">
+            <div class="container">
+                <span class="section-tag"><i class="fa-solid fa-flask-vial"></i> Innovation Projects</span>
+                <h2 class="section-title">Research <span class="gradient-green">Projects Led & Joined</span></h2>
+                <p class="section-subtitle">Major research grants where Prof. Dr. Abdelraouf Ramadan served as Principal Investigator (PI) or key research team member.</p>
+
+                <div class="project-tabs-wrapper">
+                    <button class="project-tab-btn active" data-category="all">All Projects</button>
+                    <button class="project-tab-btn" data-category="pi">Principal Investigator (PI)</button>
+                    <button class="project-tab-btn" data-category="intl">International Projects</button>
+                    <button class="project-tab-btn" data-category="local">Local NRC Projects</button>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- PI Project 1 -->
+                    <div class="project-item reveal-on-scroll" data-category="pi">
+                        <span class="project-role-badge badge-pi">PI - Lead Investigator</span>
+                        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:0.5rem;">Sustainability of Food Production in Greenhouses</h3>
+                        <p style="font-size:0.88rem; color:var(--color-green-light); margin-bottom:0.8rem;">2022 â€“ 2025 | Funded by National Research Centre, Egypt</p>
+                        <p style="font-size:0.92rem; color:var(--color-text-muted);">Focusing on food production with minimal consumption of water and energy inside greenhouses under climate change scenarios.</p>
+                    </div>
+
+                    <!-- PI Project 2 -->
+                    <div class="project-item reveal-on-scroll" data-category="pi">
+                        <span class="project-role-badge badge-pi">PI - Lead Investigator</span>
+                        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:0.5rem;">Compressed Organic Mulching from Rice Straw</h3>
+                        <p style="font-size:0.88rem; color:var(--color-green-light); margin-bottom:0.8rem;">2018 â€“ 2019 | Funded by National Research Centre, Egypt</p>
+                        <p style="font-size:0.92rem; color:var(--color-text-muted);">Producing compressed organic soil mulching using rice straw and polymers to improve crop productivity and water use efficiency under arid conditions.</p>
+                    </div>
+
+                    <!-- PI Project 3 -->
+                    <div class="project-item reveal-on-scroll" data-category="pi">
+                        <span class="project-role-badge badge-pi">PI - Lead Investigator</span>
+                        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:0.5rem;">Single-Engine Irrigation Pump & Shredder Machine</h3>
+                        <p style="font-size:0.88rem; color:var(--color-green-light); margin-bottom:0.8rem;">NRC Innovation Grant</p>
+                        <p style="font-size:0.92rem; color:var(--color-text-muted);">Design and manufacture of an innovative combined unit for managing irrigation pumps and crop residue shredders using a single engine.</p>
+                    </div>
+
+                    <!-- PI Project 4 -->
+                    <div class="project-item reveal-on-scroll" data-category="pi">
+                        <span class="project-role-badge badge-pi">PI - Newton-Mosharafa Fellow</span>
+                        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:0.5rem;">SALTMED Modeling for Sustainable Water Management</h3>
+                        <p style="font-size:0.88rem; color:var(--color-green-light); margin-bottom:0.8rem;">2015 â€“ 2016 | Funded by Newton-Mosharafa (UK)</p>
+                        <p style="font-size:0.92rem; color:var(--color-text-muted);">Applying the SALTMED model for sustainable water management under dry area conditions at the Centre for Ecology and Hydrology, UK.</p>
+                    </div>
+
+                    <!-- International Project 1 -->
+                    <div class="project-item reveal-on-scroll" data-category="intl">
+                        <span class="project-role-badge badge-intl">International Team Member</span>
+                        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:0.5rem;">SIRRIMED Project (EU Grant No. 245159)</h3>
+                        <p style="font-size:0.88rem; color:var(--color-water-sky); margin-bottom:0.8rem;">2010 â€“ 2015 | Collaborative Project â€“ SICA Mediterranean Countries</p>
+                        <p style="font-size:0.92rem; color:var(--color-text-muted);">"Sustainable use of irrigation water in the Mediterranean Region" across multi-national Mediterranean agricultural research institutes.</p>
+                    </div>
+
+                    <!-- International Project 2 -->
+                    <div class="project-item reveal-on-scroll" data-category="intl">
+                        <span class="project-role-badge badge-intl">International Team Member</span>
+                        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:0.5rem;">Balance Fertilization for Main Crops in Egypt</h3>
+                        <p style="font-size:0.88rem; color:var(--color-water-sky); margin-bottom:0.8rem;">2013 â€“ 2015 | Funded by Kingdom of Jordan</p>
+                        <p style="font-size:0.92rem; color:var(--color-text-muted);">Improving fertilization balance and water productivity for main Egyptian field crops.</p>
+                    </div>
+
+                    <!-- Local Projects -->
+                    <div class="project-item reveal-on-scroll" data-category="local">
+                        <span class="project-role-badge badge-local">Local NRC Team Member</span>
+                        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:0.5rem;">Jojoba & Jatropha Harvester Machine</h3>
+                        <p style="font-size:0.88rem; color:var(--color-earth-gold); margin-bottom:0.8rem;">2013 â€“ 2016 | NRC Project No. 10121001</p>
+                        <p style="font-size:0.92rem; color:var(--color-text-muted);">Manufacturing jojoba and jatropha harvesting equipment using locally manufactured materials.</p>
+                    </div>
+
+                    <div class="project-item reveal-on-scroll" data-category="local">
+                        <span class="project-role-badge badge-local">Local NRC Team Member</span>
+                        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:0.5rem;">Magnetic Water Technology in Agriculture</h3>
+                        <p style="font-size:0.88rem; color:var(--color-earth-gold); margin-bottom:0.8rem;">2010 â€“ 2012 | NRC Project No. 9050102</p>
+                        <p style="font-size:0.92rem; color:var(--color-text-muted);">Using magnetic water technology to improve crop production and water productivity under environmental stress.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Media Showcase Section (Video & Screenshots) -->
+        <section class="section-padding" id="media">
+            <div class="container">
+                <span class="section-tag"><i class="fa-solid fa-play"></i> Video & Gallery</span>
+                <h2 class="section-title">Media & <span class="gradient-water">Field Showcase</span></h2>
+                <p class="section-subtitle">Visual overview of research experiments, pressurized irrigation field setups, and field demonstrations.</p>
+
+                <div class="media-container">
+                    <!-- HTML5 Showcase Video -->
+                    <div class="video-showcase-frame reveal-on-scroll">
+                        <div class="video-wrapper">
+                            <video controls poster="prof_abdelraouf.jpg" src="intro_video.mp4">
+                                Your browser does not support HTML5 video tag.
+                            </video>
+                        </div>
+                        <div class="video-caption-bar">
+                            <div>
+                                <h3 class="video-title"><i class="fa-solid fa-video text-accent-green"></i> Research & Field Irrigation Innovations Showcase</h3>
+                                <p style="font-size:0.88rem; color:var(--color-text-muted);">Overview of pulse drip irrigation, fish farm effluent reuse, and greenhouse sustainability.</p>
+                            </div>
+                            <span class="section-tag" style="margin:0;"><i class="fa-solid fa-film"></i> HD Video</span>
+                        </div>
+                    </div>
+
+                    <!-- Video Screenshots Grid -->
+                    <div>
+                        <h3 style="font-size:1.4rem; color:#fff; margin-bottom:1.2rem;"><i class="fa-solid fa-images text-accent-blue"></i> Experiment & Field Screenshots</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="screenshot1.jpg" alt="Field Experiment Setup">
+                                <div class="gallery-overlay">
+                                    <div class="gallery-caption">Drip Line Spacing & Pulse Irrigation Field Trial</div>
+                                </div>
+                                <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                            </div>
+
+                            <div class="gallery-item">
+                                <img src="screenshot2.jpg" alt="Greenhouse Automation">
+                                <div class="gallery-overlay">
+                                    <div class="gallery-caption">Greenhouse Automated Tensiometer & Fertigation Control</div>
+                                </div>
+                                <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                            </div>
+
+                            <div class="gallery-item">
+                                <img src="screenshot3.jpg" alt="Fish Farm Wastewater Reuse">
+                                <div class="gallery-overlay">
+                                    <div class="gallery-caption">Reuse of Fish Farm Drainage Water in Irrigation</div>
+                                </div>
+                                <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                            </div>
+
+                            <div class="gallery-item">
+                                <img src="screenshot4.jpg" alt="Solar Powered Pump Unit">
+                                <div class="gallery-overlay">
+                                    <div class="gallery-caption">Mobile Solar Photovoltaic Water Pumping System</div>
+                                </div>
+                                <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Research Papers Section (CORE FOCUS - 117 Papers) -->
+        <section class="section-padding bg-surface" id="research-papers">
+            <div class="container">
+                <span class="section-tag"><i class="fa-solid fa-book-bookmark"></i> Core Scientific Repository</span>
+                <h2 class="section-title">Research Papers <span class="gradient-green">(117 Publications)</span></h2>
+                <p class="section-subtitle">Search, filter, and explore all 117 peer-reviewed journal papers, book chapters, and conference proceedings published by Prof. Dr. Abdelraouf Ramadan.</p>
+
+                <!-- Search & Filters Bar -->
+                <div class="papers-controls-bar">
+                    <div class="search-box-wrapper">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="paperSearchInput" class="search-input" placeholder="Search by paper title, co-authors, journal, keywords (e.g. drip, pulse, SALTMED, potato)...">
+                    </div>
+
+                    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+                        <div class="filters-pills-row">
+                            <span class="filter-pill active" data-year="all">All Papers (117)</span>
+                            <span class="filter-pill" data-year="2025">2025</span>
+                            <span class="filter-pill" data-year="2024">2024</span>
+                            <span class="filter-pill" data-year="2023">2023</span>
+                            <span class="filter-pill" data-year="2020-2022">2020 - 2022</span>
+                            <span class="filter-pill" data-year="2015-2019">2015 - 2019</span>
+                            <span class="filter-pill" data-year="pre-2015">Pre-2015</span>
+                        </div>
+                        <div id="papersCountBadge" class="papers-count-badge">Showing 126 of 117 Papers</div>
+                    </div>
+                </div>
+
+                <!-- Papers Grid Container -->
+                <div id="papersGrid" class="papers-grid">
+                    <!-- Dynamic rendering via script.js -->
+                </div>
+
+                <!-- Pagination Bar -->
+                <div class="pagination-container" id="paginationContainer">
+                    <button id="prevPageBtn" class="page-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div id="pageNumbersContainer" style="display:flex; gap:0.4rem;"></div>
+                    <button id="nextPageBtn" class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Contact Section -->
+        <section class="section-padding" id="contact">
+            <div class="container">
+                <span class="section-tag"><i class="fa-solid fa-paper-plane"></i> Direct Communication</span>
+                <h2 class="section-title">Get In <span class="gradient-water">Touch</span></h2>
+                <p class="section-subtitle">Reach out to Prof. Dr. Abdelraouf Ramadan for scientific collaborations, consultation, and academic inquiries.</p>
+
+                <div class="contact-grid">
+                    <div class="contact-info-cards">
+                        <div class="contact-item-card reveal-on-scroll">
+                            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div class="contact-details">
+                                <h4>Direct Mobile Phone</h4>
+                                <a href="tel:01146166904" style="font-size:1.15rem; font-weight:700; color:var(--color-green-light);">01146166904</a>
+                                <p style="font-size:0.85rem; color:var(--color-text-muted);">Available for official calls & WhatsApp</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item-card reveal-on-scroll">
+                            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="contact-details">
+                                <h4>Institutional & Personal Emails</h4>
+                                <a href="mailto:ar.eid@nrc.sci.eg" style="color:var(--color-water-sky); font-weight:600;">Email 1: ar.eid@nrc.sci.eg</a>
+                                <a href="mailto:abdelrouf2000@yahoo.com" style="color:var(--color-water-sky); font-weight:600;">Email 2: abdelrouf2000@yahoo.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item-card reveal-on-scroll">
+                            <div class="contact-icon"><i class="fa-solid fa-building-user"></i></div>
+                            <div class="contact-details">
+                                <h4>Work Address (NRC)</h4>
+                                <p style="color:#fff; font-weight:500;">33 El-Buhouth St., Dokki, Cairo, Egypt, P. C. 12622</p>
+                                <p style="font-size:0.85rem; color:var(--color-text-muted);">Water Relations and Field Irrigation Dept, National Research Centre</p>
+                                <p style="font-size:0.85rem; color:var(--color-text-muted);">Tel: (202)33371362 - 33371449 Ext. 3907 | Fax: (202)33370931</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item-card reveal-on-scroll">
+                            <div class="contact-icon" style="background:rgba(37,211,102,0.15); border-color:rgba(37,211,102,0.4); color:#25D366;"><i class="fa-brands fa-whatsapp"></i></div>
+                            <div class="contact-details">
+                                <h4>Direct WhatsApp Chat</h4>
+                                <a href="https://wa.me/201146166904" target="_blank" rel="noopener" style="font-size:1.1rem; font-weight:700; color:#25D366; display:inline-flex; align-items:center; gap:0.5rem;">
+                                    <i class="fa-brands fa-whatsapp"></i> +201146166904
+                                </a>
+                                <p style="font-size:0.85rem; color:var(--color-text-muted);">Instant WhatsApp Messaging & Inquiries</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="glass-card reveal-on-scroll">
+                        <h3 style="font-size:1.4rem; color:#fff; margin-bottom:1rem;"><i class="fa-solid fa-paper-plane text-accent-green"></i> Send a Direct Message</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label class="form-label" for="contactName">Your Full Name</label>
+                                <input type="text" id="contactName" class="form-control" placeholder="Prof. / Dr. / Eng. Full Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contactEmail">Your Email Address</label>
+                                <input type="email" id="contactEmail" class="form-control" placeholder="name@institution.edu" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contactSubject">Subject</label>
+                                <input type="text" id="contactSubject" class="form-control" placeholder="Research Collaboration / Advisory Inquiry" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contactMessage">Message</label>
+                                <textarea id="contactMessage" class="form-control" placeholder="Write your inquiry or message details here..." required></textarea>
+                            </div>
+                            <div style="display:flex; flex-direction:column; gap:0.8rem;">
+                                <button type="submit" class="btn btn-primary" style="width:100%;">
+                                    <i class="fa-solid fa-paper-plane"></i> Send Email Message
+                                </button>
+                                <a href="https://wa.me/201146166904" target="_blank" rel="noopener" class="btn" style="width:100%; background:#25D366; color:#ffffff; font-weight:700; box-shadow: 0 4px 20px rgba(37,211,102,0.35); text-decoration:none;">
+                                    <i class="fa-brands fa-whatsapp" style="font-size:1.2rem;"></i> Chat Directly on WhatsApp
+                                </a>
+                            </div>
+                            <div id="formFeedback"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox Modal for Screenshots -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="lightboxClose">&times;</span>
+            <img id="lightboxImg" src="" alt="Screenshot Enlarged">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="footer-text">
+                &copy; 2026 Prof. Dr. Abdelraouf Ramadan. All Rights Reserved. | Designed with Excellence for Agricultural Engineering & Water Management.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Linked Vanilla JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
