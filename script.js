@@ -1,11 +1,11 @@
 ﻿/**
  * Agricultural Portfolio - Prof. Dr. Abdelraouf Ramadan
  * Premium UI/UX & Interactive Logic
- * Total Research Papers Integrated: 117
+ * Total Research Papers Integrated: 126
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Research Papers Data Array ---
+    // --- 126 Research Papers Data Array ---
     const researchPapersData = [
     {
         "id":  1,
@@ -1071,6 +1071,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- DOM Elements ---
     const papersGrid = document.getElementById('papersGrid');
+
+    // --- Dynamic Totals Update ---
+    document.querySelectorAll('.dynamic-total-papers').forEach(el => {
+        el.textContent = researchPapersData.length;
+    });
     const papersCountBadge = document.getElementById('papersCountBadge');
     const searchInput = document.getElementById('paperSearchInput');
     const filterPills = document.querySelectorAll('.filter-pill');
@@ -1084,30 +1089,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloaderPercent = document.getElementById('preloaderPercent');
     const preloaderBar = document.getElementById('preloaderBar');
 
-    function dismissPreloader() {
-        if (preloader && preloader.style.display !== 'none') {
-            preloader.style.opacity = '0';
-            preloader.style.visibility = 'hidden';
-            setTimeout(() => {
-                preloader.style.display = 'none';
-                triggerScrollAnimations();
-            }, 400);
-        }
-    }
-
     let progress = 0;
     const preloaderInterval = setInterval(() => {
-        progress += Math.floor(Math.random() * 20) + 15;
+        progress += Math.floor(Math.random() * 15) + 5;
         if (progress >= 100) {
             progress = 100;
             clearInterval(preloaderInterval);
-            setTimeout(dismissPreloader, 200);
+            setTimeout(() => {
+                if (preloader) {
+                    preloader.style.opacity = '0';
+                    preloader.style.visibility = 'hidden';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                        triggerScrollAnimations();
+                    }, 500);
+                }
+            }, 400);
         }
         if (preloaderPercent) preloaderPercent.textContent = progress + '%';
         if (preloaderBar) preloaderBar.style.width = progress + '%';
-    }, 40);
-
-    setTimeout(dismissPreloader, 2500);
+    }, 60);
 
     // --- Navbar & Mobile Menu ---
     const navbar = document.getElementById('navbar');
@@ -1121,9 +1122,10 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar?.classList.remove('scrolled');
         }
         
+        // Update Scroll Progress Bar
         const scrollTop = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        const scrollPercent = (scrollTop / docHeight) * 100;
         const progressBar = document.getElementById('scrollProgressBar');
         if (progressBar) progressBar.style.width = scrollPercent + '%';
     });
@@ -1146,6 +1148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderPapers() {
         if (!papersGrid) return;
 
+        // Apply Search & Filter
         filteredPapers = researchPapersData.filter(paper => {
             const matchesSearch = 
                 paper.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -1165,10 +1168,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return matchesSearch && matchesYear;
         });
 
+        // Update count badge
         if (papersCountBadge) {
-            papersCountBadge.textContent = "Showing " + filteredPapers.length + " of " + researchPapersData.length + " Papers";
+            papersCountBadge.textContent = `Showing ${filteredPapers.length} of ${researchPapersData.length} Papers`;
         }
 
+        // Calculate Pagination
         const totalPages = Math.ceil(filteredPapers.length / papersPerPage) || 1;
         if (currentPage > totalPages) currentPage = 1;
 
@@ -1177,12 +1182,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const pagePapers = filteredPapers.slice(startIndex, endIndex);
 
         if (pagePapers.length === 0) {
-            papersGrid.innerHTML = 
-                '<div class="no-results-card">' +
-                    '<i class="fa-solid fa-folder-open text-muted"></i>' +
-                    '<h3>No matching research papers found</h3>' +
-                    '<p>Try clearing your search query or selecting a different year range.</p>' +
-                '</div>';
+            papersGrid.innerHTML = `
+                <div class="no-results-card">
+                    <i class="fa-solid fa-folder-open text-muted"></i>
+                    <h3>No matching research papers found</h3>
+                    <p>Try clearing your search query or selecting a different year range.</p>
+                </div>
+            `;
             if (paginationContainer) paginationContainer.style.display = 'none';
             return;
         }
@@ -1190,18 +1196,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (paginationContainer) paginationContainer.style.display = 'flex';
 
         papersGrid.innerHTML = pagePapers.map((paper, index) => {
-            return '<article class="paper-card reveal-on-scroll">' +
-                    '<div class="paper-card-header">' +
-                        '<span class="paper-number">#' + paper.id + '</span>' +
-                        '<span class="paper-year-tag"><i class="fa-regular fa-calendar"></i> ' + paper.year + '</span>' +
-                    '</div>' +
-                    '<h3 class="paper-title">' + escapeHtml(paper.title) + '</h3>' +
-                    '<p class="paper-authors"><i class="fa-solid fa-users text-accent-green"></i> ' + escapeHtml(paper.authors || 'Prof. Dr. Abdelraouf Ramadan et al.') + '</p>' +
-                    (paper.journal ? '<p class="paper-journal"><i class="fa-solid fa-book-bookmark text-accent-blue"></i> ' + escapeHtml(paper.journal) + '</p>' : '') +
-                    '<div class="paper-card-footer">' +
-                        '<span class="paper-category-pill"><i class="fa-solid fa-vial"></i> NRC Publication</span>' +
-                    '</div>' +
-                '</article>';
+            const globalIndex = startIndex + index + 1;
+            const doiBadge = paper.doi ? 
+                `<a href="https://doi.org/${paper.doi}" target="_blank" rel="noopener" class="paper-doi-btn"><i class="fa-solid fa-link"></i> DOI: ${paper.doi}</a>` : '';
+
+            return `
+                <article class="paper-card reveal-on-scroll">
+                    <div class="paper-card-header">
+                        <span class="paper-number">#${paper.id}</span>
+                        <span class="paper-year-tag"><i class="fa-regular fa-calendar"></i> ${paper.year}</span>
+                    </div>
+                    <h3 class="paper-title">${escapeHtml(paper.title)}</h3>
+                    <p class="paper-authors"><i class="fa-solid fa-users text-accent-green"></i> ${escapeHtml(paper.authors || 'Prof. Dr. Abdelraouf Ramadan et al.')}</p>
+                    ${paper.journal ? `<p class="paper-journal"><i class="fa-solid fa-book-bookmark text-accent-blue"></i> ${escapeHtml(paper.journal)}</p>` : ''}
+                    <div class="paper-card-footer">
+                        ${doiBadge}
+                        <span class="paper-category-pill"><i class="fa-solid fa-vial"></i> Peer-Reviewed</span>
+                    </div>
+                </article>
+            `;
         }).join('');
 
         renderPaginationControls(totalPages);
@@ -1214,7 +1227,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (let i = 1; i <= totalPages; i++) {
             const btn = document.createElement('button');
-            btn.className = 'page-btn ' + (i === currentPage ? 'active' : '');
+            btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
             btn.textContent = i;
             btn.addEventListener('click', () => {
                 currentPage = i;
@@ -1252,6 +1265,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     }
 
+    // --- Search & Filter Event Listeners ---
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             searchQuery = e.target.value;
@@ -1270,27 +1284,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Initial Paper Render
     renderPapers();
 
-    const projectTabs = document.querySelectorAll('.project-tab-btn');
-    const projectCards = document.querySelectorAll('.project-item');
-
-    projectTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            projectTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            const targetCategory = tab.getAttribute('data-category');
-
-            projectCards.forEach(card => {
-                if (targetCategory === 'all' || card.getAttribute('data-category') === targetCategory) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
-
+    // --- Scroll Animations (IntersectionObserver) ---
     function triggerScrollAnimations() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1298,12 +1295,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     entry.target.classList.add('revealed');
                 }
             });
-        }, { threshold: 0.08 });
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
     }
     triggerScrollAnimations();
 
+    // --- Lightbox Modal for Screenshots ---
     const galleryItems = document.querySelectorAll('.gallery-item');
     const lightboxModal = document.getElementById('lightboxModal');
     const lightboxImg = document.getElementById('lightboxImg');
@@ -1334,6 +1332,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- Contact Form Submission Handler ---
     const contactForm = document.getElementById('contactForm');
     const formFeedback = document.getElementById('formFeedback');
 
@@ -1341,11 +1340,12 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             if (formFeedback) {
-                formFeedback.innerHTML = 
-                    '<div class="feedback-alert success">' +
-                        '<i class="fa-solid fa-circle-check"></i>' +
-                        'Thank you for reaching out! Your message has been routed to Prof. Dr. Abdelraouf Ramadan.' +
-                    '</div>';
+                formFeedback.innerHTML = `
+                    <div class="feedback-alert success">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Thank you for your message! Dr. Abdelraouf Ramadan's team will respond to your inquiry shortly.
+                    </div>
+                `;
                 contactForm.reset();
             }
         });
