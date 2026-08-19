@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Prof. Dr. Abdelraouf Ramadan</title>
+    <title>Metrics Admin - Prof. Dr. Abdelraouf Ramadan</title>
     <!-- Use main style -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .admin-container {
-            max-width: 1000px;
+            max-width: 800px;
             margin: 4rem auto;
             padding: 2rem;
             background: rgba(7, 14, 9, 0.7);
@@ -49,24 +49,6 @@
             border-color: var(--color-green-light);
             background: rgba(43, 217, 143, 0.05);
         }
-        .papers-list {
-            margin-top: 2rem;
-            max-height: 400px;
-            overflow-y: auto;
-            background: rgba(0,0,0,0.2);
-            border-radius: 12px;
-            padding: 1rem;
-        }
-        .paper-item {
-            padding: 1rem;
-            border-bottom: 1px solid var(--color-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .paper-item:last-child {
-            border-bottom: none;
-        }
         .login-screen {
             max-width: 400px;
             margin: 10rem auto;
@@ -75,6 +57,13 @@
         #dashboard { display: none; }
         .flex-row { display: flex; gap: 1rem; }
         .flex-row > div { flex: 1; }
+        .platform-section {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 2rem;
+        }
         #status-msg {
             margin-top: 1rem;
             padding: 1rem;
@@ -90,7 +79,7 @@
     <!-- Login Screen -->
     <div id="login-screen" class="admin-container login-screen">
         <h2 style="margin-bottom: 1rem;"><i class="fa-solid fa-lock text-accent-green"></i> Secure Login</h2>
-        <p style="color: var(--color-text-subtle); margin-bottom: 2rem;">Enter your GitHub Personal Access Token to manage your portfolio.</p>
+        <p style="color: var(--color-text-subtle); margin-bottom: 2rem;">Enter your GitHub Personal Access Token to manage metrics.</p>
         <div class="form-group">
             <input type="password" id="gh-token" class="form-control" placeholder="ghp_xxxxxxxxxxxxxxxxxxx">
         </div>
@@ -100,50 +89,80 @@
     <!-- Dashboard -->
     <div id="dashboard" class="admin-container">
         <div class="admin-header">
-            <h2><i class="fa-solid fa-gauge"></i> Admin Dashboard</h2>
+            <h2><i class="fa-solid fa-chart-pie"></i> Metrics Admin Dashboard</h2>
             <button id="btn-logout" class="btn btn-outline"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-            <!-- Add Paper Form -->
-            <div>
-                <h3><i class="fa-solid fa-plus-circle text-accent-blue"></i> Add New Research Paper</h3>
-                <div class="form-group" style="margin-top: 1.5rem;">
-                    <label>Title</label>
-                    <textarea id="p-title" class="form-control" rows="3" placeholder="Paper Title"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Authors</label>
-                    <input type="text" id="p-authors" class="form-control" placeholder="e.g. Prof. Dr. Abdelraouf Ramadan et al.">
-                </div>
-                <div class="flex-row">
-                    <div class="form-group">
-                        <label>Year</label>
-                        <input type="number" id="p-year" class="form-control" placeholder="2026">
-                    </div>
-                    <div class="form-group">
-                        <label>DOI (Optional)</label>
-                        <input type="text" id="p-doi" class="form-control" placeholder="10.1234/abc">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Journal / Conference</label>
-                    <input type="text" id="p-journal" class="form-control" placeholder="Journal of Agricultural Engineering">
-                </div>
-                
-                <button id="btn-add-paper" class="btn btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Add & Save to Website</button>
-                <div id="status-msg"></div>
-            </div>
+        <p style="color: var(--color-text-subtle); margin-bottom: 2rem;">Update the hardcoded metrics for your academic profiles. These changes will be pushed directly to your live website.</p>
 
-            <!-- Existing Papers -->
-            <div>
-                <h3><i class="fa-solid fa-database text-accent-gold"></i> Current Papers (<span id="papers-count">0</span>)</h3>
-                <div class="papers-list" id="papers-list">
-                    <!-- Loaded via JS -->
-                    <div style="text-align: center; color: var(--color-text-subtle);">Loading papers from GitHub...</div>
+        <!-- Scopus -->
+        <div class="platform-section">
+            <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-atom text-accent-blue"></i> Scopus Database</h3>
+            <div class="flex-row">
+                <div class="form-group">
+                    <label>H-Index</label>
+                    <input type="number" id="s-hindex" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Documents</label>
+                    <input type="number" id="s-docs" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Citations</label>
+                    <input type="number" id="s-citations" class="form-control">
                 </div>
             </div>
         </div>
+
+        <!-- ResearchGate -->
+        <div class="platform-section">
+            <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-flask text-accent-green"></i> ResearchGate</h3>
+            <div class="flex-row">
+                <div class="form-group">
+                    <label>H-Index</label>
+                    <input type="number" id="r-hindex" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Documents</label>
+                    <input type="number" id="r-docs" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Citations</label>
+                    <input type="number" id="r-citations" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- Google Scholar -->
+        <div class="platform-section">
+            <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-graduation-cap text-accent-gold"></i> Google Scholar</h3>
+            <div class="flex-row">
+                <div class="form-group">
+                    <label>H-Index</label>
+                    <input type="number" id="g-hindex" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Documents</label>
+                    <input type="number" id="g-docs" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Citations</label>
+                    <input type="number" id="g-citations" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Pill Total Citations -->
+        <div class="platform-section">
+            <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-quote-left text-accent-green"></i> Total Overall Citations (Hero Section)</h3>
+            <div class="form-group">
+                <label>Total Citations (e.g. 1700+)</label>
+                <input type="text" id="t-citations" class="form-control">
+            </div>
+        </div>
+        
+        <button id="btn-save" class="btn btn-primary" style="width: 100%;"><i class="fa-solid fa-cloud-arrow-up"></i> Save Metrics to Website</button>
+        <div id="status-msg"></div>
     </div>
 
     <script src="admin.js"></script>

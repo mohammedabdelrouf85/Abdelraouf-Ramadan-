@@ -1,9 +1,9 @@
 const REPO_OWNER = 'mohammedabdelrouf85';
 const REPO_NAME = 'Abdelraouf-Ramadan-';
-const FILE_PATH = 'papers.json';
+const FILE_PATH = 'index.html';
 
 let currentSha = '';
-let papersData = [];
+let indexHtml = '';
 
 document.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('gh_token');
@@ -25,35 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('dashboard').style.display = 'none';
     });
 
-    document.getElementById('btn-add-paper').addEventListener('click', async () => {
-        const title = document.getElementById('p-title').value.trim();
-        const authors = document.getElementById('p-authors').value.trim();
-        const year = document.getElementById('p-year').value.trim();
-        const doi = document.getElementById('p-doi').value.trim();
-        const journal = document.getElementById('p-journal').value.trim();
-
-        if (!title || !year) {
-            showMsg('Title and Year are required!', 'error');
-            return;
-        }
-
-        const newId = papersData.length > 0 ? Math.max(...papersData.map(p => p.id)) + 1 : 1;
-        
-        const newPaper = {
-            id: newId,
-            raw: `${authors} (${year}). ${title}. ${journal}`,
-            authors: authors,
-            year: year,
-            title: title,
-            journal: journal,
-            doi: doi
-        };
-
-        // Add to array at the beginning
-        papersData.unshift(newPaper);
-        
-        // Re-assign IDs just to be safe or leave as is
-        
+    document.getElementById('btn-save').addEventListener('click', async () => {
         await saveToGitHub(localStorage.getItem('gh_token'));
     });
 });
@@ -63,7 +35,7 @@ async function showDashboard(token) {
     document.getElementById('dashboard').style.display = 'block';
     
     try {
-        const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+        const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?timestamp=${new Date().getTime()}`, {
             headers: { 'Authorization': `token ${token}` }
         });
         
@@ -77,47 +49,79 @@ async function showDashboard(token) {
         const data = await response.json();
         currentSha = data.sha;
         
-        // Decode base64 content
-        const decodedContent = decodeURIComponent(escape(window.atob(data.content)));
-        papersData = JSON.parse(decodedContent);
+        // Decode base64 HTML
+        indexHtml = decodeURIComponent(escape(window.atob(data.content)));
         
-        renderPapers();
+        // Extract current values using simple regex mapping
+        populateField('s-hindex', 'scopus-hindex');
+        populateField('s-docs', 'scopus-docs');
+        populateField('s-citations', 'scopus-citations');
+        
+        populateField('r-hindex', 'rg-hindex');
+        populateField('r-docs', 'rg-docs');
+        populateField('r-citations', 'rg-citations');
+        
+        populateField('g-hindex', 'gs-hindex');
+        populateField('g-docs', 'gs-docs');
+        populateField('g-citations', 'gs-citations');
+        
+        populateFieldSpan('t-citations', 'hero-total-citations');
+        
     } catch (err) {
         console.error(err);
-        document.getElementById('papers-list').innerHTML = `<div style="color:red">Failed to load papers. Check permissions.</div>`;
+        showMsg('Failed to load metrics from GitHub.', 'error');
     }
 }
 
-function renderPapers() {
-    document.getElementById('papers-count').innerText = papersData.length;
-    const list = document.getElementById('papers-list');
-    list.innerHTML = '';
-    
-    papersData.slice(0, 50).forEach(paper => { // Show last 50
-        list.innerHTML += `
-            <div class="paper-item">
-                <div>
-                    <strong>#${paper.id} - ${paper.title}</strong><br>
-                    <small style="color:var(--color-text-subtle)">${paper.year} | ${paper.journal || 'No Journal'}</small>
-                </div>
-            </div>
-        `;
-    });
+function populateField(inputId, domId) {
+    const regex = new RegExp(`id="${domId}"[^>]*>([^<]*)</div>`);
+    const match = indexHtml.match(regex);
+    if (match) {
+        document.getElementById(inputId).value = match[1].trim();
+    }
+}
+
+function populateFieldSpan(inputId, domId) {
+    const regex = new RegExp(`id="${domId}"[^>]*>([^<]*)</span>`);
+    const match = indexHtml.match(regex);
+    if (match) {
+        document.getElementById(inputId).value = match[1].trim();
+    }
+}
+
+function replaceInHtml(domId, val, tag="div") {
+    const regex = new RegExp(`(id="${domId}"[^>]*>)[^<]*(</${tag}>)`);
+    indexHtml = indexHtml.replace(regex, `$1${val}$2`);
 }
 
 async function saveToGitHub(token) {
-    const btn = document.getElementById('btn-add-paper');
-    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving to Database...';
+    const btn = document.getElementById('btn-save');
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving to Website...';
     btn.disabled = true;
 
     try {
-        const updatedContent = JSON.stringify(papersData, null, 4);
+        // Update indexHtml with new values
+        replaceInHtml('scopus-hindex', document.getElementById('s-hindex').value);
+        replaceInHtml('scopus-docs', document.getElementById('s-docs').value);
+        replaceInHtml('scopus-citations', document.getElementById('s-citations').value);
+        replaceInHtml('hero-scopus-hindex', document.getElementById('s-hindex').value, "span");
         
-        // base64 encode using btoa but handle unicode
-        const encodedContent = window.btoa(unescape(encodeURIComponent(updatedContent)));
+        replaceInHtml('rg-hindex', document.getElementById('r-hindex').value);
+        replaceInHtml('rg-docs', document.getElementById('r-docs').value);
+        replaceInHtml('rg-citations', document.getElementById('r-citations').value);
+        replaceInHtml('hero-rg-hindex', document.getElementById('r-hindex').value, "span");
+        
+        replaceInHtml('gs-hindex', document.getElementById('g-hindex').value);
+        replaceInHtml('gs-docs', document.getElementById('g-docs').value);
+        replaceInHtml('gs-citations', document.getElementById('g-citations').value);
+        
+        replaceInHtml('hero-total-citations', document.getElementById('t-citations').value, "span");
+
+        // base64 encode using btoa
+        const encodedContent = window.btoa(unescape(encodeURIComponent(indexHtml)));
 
         const body = {
-            message: `admin: Added new research paper via Admin Panel`,
+            message: `admin: Updated metrics via Admin Panel`,
             content: encodedContent,
             sha: currentSha,
             branch: 'main'
@@ -134,14 +138,8 @@ async function saveToGitHub(token) {
 
         if (response.ok) {
             const data = await response.json();
-            currentSha = data.content.sha; // Update SHA for future saves
-            showMsg('Paper added and Website updated successfully!', 'success');
-            renderPapers();
-            
-            // clear form
-            document.getElementById('p-title').value = '';
-            document.getElementById('p-journal').value = '';
-            document.getElementById('p-doi').value = '';
+            currentSha = data.content.sha; // Update SHA
+            showMsg('Metrics updated successfully on live website!', 'success');
         } else {
             const err = await response.json();
             showMsg(`Error saving: ${err.message}`, 'error');
@@ -150,7 +148,7 @@ async function saveToGitHub(token) {
         showMsg('Network error while saving.', 'error');
     }
 
-    btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Add & Save to Website';
+    btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Save Metrics to Website';
     btn.disabled = false;
 }
 
